@@ -1,0 +1,116 @@
+:root {
+    --theme-color: black;
+    --theme-ligter-color: #666;
+    --theme-boder-color: #aaa;
+    --theme-disabled-color: gray;
+    --theme-error-color: red;
+}
+::-moz-selection {
+    color: white;
+    background: var(--theme-color);
+}
+::selection {
+    color: white;
+    background: var(--theme-color);
+}
+html {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body, form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    align-items: center;
+}
+input, button {
+    text-align: center;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 2em;
+    border-right: 0;
+}
+input {
+    padding: .5em;
+    border: 2px solid var(--theme-boder-color);
+    animation: none;
+}
+input:focus {
+    border-color: var(--theme-color);
+    outline-offset: 0;
+    outline: none;
+    animation: gradient-border 1s ease-in-out 0s infinite alternate forwards;
+}
+input:invalid {
+    outline: 2px solid var(--theme-error-color);
+    box-shadow: none;
+}
+/*不兼容选择器必须分开写*/
+input:not(:placeholder-shown) {
+    border-color: var(--theme-color);
+}
+p {
+    font-size: 1em;
+    color: var(--theme-disabled-color);
+}
+p::before {
+    color: var(--theme-disabled-color);
+}
+.alias {
+    flex-grow: 1;
+    color: var(--theme-color);
+}
+.alias:not(:empty)::before {
+    content: attr(data-before);
+    font-style: italic;
+}
+.log:not(:empty)::before {
+    content: attr(data-before);
+    font-style: italic;
+}
+button {
+    padding: 0;
+    border: none;
+    color: white;
+    line-height: 3em;
+    cursor: pointer;
+    background: var(--theme-color);
+    animation: gradient 1s ease-in-out 0s infinite alternate forwards;
+}
+/* 分别响应push可供订阅和设备设置可以提交注册 */
+button:disabled, form:invalid button {
+    background: var(--theme-disabled-color);
+    cursor: not-allowed;
+    animation: none;
+}
+body[data-state] input, body[data-state] button {
+    display: none;
+}
+@keyframes gradient {
+    from {
+        background: var(--theme-color);
+    }
+    to {
+        background: var(--theme-ligter-color);
+    }
+}
+@keyframes gradient-border {
+    from {
+        border-color: var(--theme-color);
+    }
+    to {
+        border-color: var(--theme-ligter-color);
+    }
+}
+@media (min-width: 460px) {
+    body {
+        max-width: 360px;
+        max-height: 450px;
+        height: 100%;
+        border: 3px solid var(--theme-boder-color);
+    }
+}

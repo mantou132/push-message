@@ -1,0 +1,21 @@
+{
+  "name": "web-push",
+  "version": "1.0.0",
+  "description": "web push api test cross browser push webpage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "push"
+  ],
+  "author": "mantou",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.14.0",
+    "node-shared-cache": "github:kyriosli/node-shared-cache",
+    "web-push": "^2.1.1"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "addons": {
+    "push@mantou": {
+      "updates": [
+        { "version": "1",
+          "update_link": "http://upyun.ittun.com/webextensions-examples/push/push-1.0.xpi",
+          "applications": {
+            "gecko": {
+              "strict_min_version": "44"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

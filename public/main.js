@@ -1,4 +1,4 @@
-    var input = document.querySelector('input');
+var input = document.querySelector('input');
 var alias = document.querySelector('.alias');
 var loger = document.querySelector('.log');
 var button = document.querySelector('button');
@@ -101,7 +101,7 @@ function subscribe() {
 }
 
 function login() {
-    fetch('https://test.594mantou.com:8000/sub?username=' + lscache.get('userinfo').username).then(res => {
+    fetch('/sub?username=' + lscache.get('userinfo').username).then(res => {
         return res.json();
     }).then(devicelist => {
         if (Object.keys(devicelist).indexOf(lscache.get('userinfo').alias) === -1) throw '该设备没有注册';

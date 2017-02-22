@@ -71,5 +71,5 @@ function browserName() {
         browser = browserMatch.browser;
         version = browserMatch.version;
     }
-    return platform + ' ' + browser + ' ' + version;
+    return platform + ' ' + browser/* + ' ' + version*/;
 }

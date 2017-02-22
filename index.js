@@ -1,17 +1,12 @@
 var express = require('express');
 var path = require('path');
-var https = require('https');
+var http = require('http');
+var config = require('config');
 var bodyParser = require('body-parser');
 var storage = require('node-shared-cache');
-var config = require('../config');
-var database = new storage.Cache(config.database['push-message'], 52428800);
+var database = new storage.Cache('push-message', 52428800);
 var webPush = require('web-push');
-    webPush.setGCMAPIKey(config.gcm);
-
-var credentials = {
-    key: config.webserver['push-message'].ssl.key,
-    cert: config.webserver['push-message'].ssl.cert
-};
+    webPush.setGCMAPIKey(config.get('gcm'));
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: false, strict: false }));
@@ -107,8 +102,10 @@ app.post('/push', function (req, res) {
     });
 });
 
-app.use(express.static(path.join(__dirname, 'publish'), {maxAge: 86400000 }));
+app.use(express.static(path.join(__dirname, 'public'), {maxAge: 86400000 }));
 
-var httpsServer = https.createServer(credentials, app);
-
-httpsServer.listen(8000);
+var httpServer = http.createServer(app);
+var port = process.env.PORT || 3000;
+httpServer.listen(port, function () {
+  console.info('server started, port:', port);
+});

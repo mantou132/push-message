@@ -1,8 +1,5 @@
 
 #简介
-使用 [Webextension API](https://developer.mozilla.org/en-US/Add-ons/WebExtensions)做的，兼容Chrome以及安卓Firefox（需小许修改）。
-
-#用途
 将当前标签以消息推送的方式同步给其它设备
 
 ##优点
@@ -10,10 +7,12 @@
 2. 推送消息能缓存
 
 #原理
-[Web Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)；
+* [Web Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
+* [Webextension API](https://developer.mozilla.org/en-US/Add-ons/WebExtensions)
 
 #兼容
-Firefox 45+
+* Firefox 45+
+* Chrome
 
 #使用
 1. 装上扩展进行注册

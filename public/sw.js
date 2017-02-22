@@ -1,3 +1,9 @@
+this.addEventListener('install', function(event) {
+    console.log('install');
+});
+this.addEventListener('sync', function(event) {
+    console.log('sync');
+});
 this.addEventListener('push', function(event) {
     var payload = {};
     try {
@@ -5,14 +11,16 @@ this.addEventListener('push', function(event) {
     } catch(e) {
         console.log('发送的消息为：', event.data.text())
     }
-    this.registration.showNotification(payload.title, {
-        body: payload.body,
-        icon: './push.png',
-        data: payload.data
-    }).then(e =>
-        console.log(e)
-    ).catch(err =>
-        console.log(err)
+    event.waitUntil(
+        this.registration.showNotification(payload.title, {
+            body: payload.body,
+            icon: './push.png',
+            data: payload.data
+        }).then(e =>
+            console.log(e)
+        ).catch(err =>
+            console.log(err)
+        )
     );
 });
 this.addEventListener('notificationclick', function(event) {

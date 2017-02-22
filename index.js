@@ -4,7 +4,7 @@ var http = require('http');
 var config = require('config');
 var bodyParser = require('body-parser');
 var storage = require('node-shared-cache');
-var database = new storage.Cache('push-message', 52428800);
+var database = new storage.Cache('push', 5242880);
 var webPush = require('web-push');
     webPush.setGCMAPIKey(config.get('gcm'));
 var app = express();

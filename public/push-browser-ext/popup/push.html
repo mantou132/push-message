@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="push.css"/>
+    <title>Push</title>
+  </head>
+
+<body>
+  <form>
+    <input type="text" required placeholder="username" autofocus="">
+    <p class="log" data-before="信息："></p>
+    <button data-action="注册"></button>
+    <button data-action="登陆"></button>
+  </form>
+  <ul class="devicelist">
+    <div class="tip">
+      <p>进入这个链接注册设备: </br><a class="link" href="" data-action="copy" title="点击复制"></a></p>
+      <img class="qrcode">
+    </div>
+  </ul>
+  <script src="push.js"></script>
+</body>
+
+</html>

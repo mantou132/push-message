@@ -1,0 +1,28 @@
+{
+    "description": "push current tabs to other devices",
+    "manifest_version": 2,
+    "name": "Push",
+    "version": "1.0",
+    "homepage_url": "https://push.xianqiao.wang",
+    "icons": {
+        "128": "icons/push.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "tabs"
+    ],
+
+    "browser_action": {
+        "default_icon": "icons/push.png",
+        "default_title": "Push",
+        "default_popup": "popup/push.html"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "options_ui": {
+        "page": "option/index.html"
+    }
+
+}

@@ -1,0 +1,143 @@
+:root {
+    --theme-color: black;
+    --theme-ligter-color: #666;
+    --theme-boder-color: #aaa;
+    --theme-disabled-color: gray;
+    --theme-error-color: red;
+    --theme-link-color: blue;
+    font-size: 16px;
+}
+::-moz-selection {
+    color: white;
+    background: var(--theme-color);
+}
+::selection {
+    color: white;
+    background: var(--theme-color);
+}
+html, body {
+    height: 300px;
+    width: 250px;
+    margin: 0;
+    overflow-x: hidden;
+}
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+}
+input, button {
+    box-sizing: border-box;
+    text-align: center;
+    border-right: 0;
+}
+input {
+    width: 80%;
+    margin: 10%;
+    padding: .5em;
+    border: 2px solid var(--theme-boder-color);
+}
+input:focus {
+    border-color: var(--theme-color);
+    outline-offset: 0;
+    outline: none;
+}
+input:invalid {
+    outline: 2px solid var(--theme-error-color);
+    box-shadow: none;
+}
+/*不兼容选择器必须分开写*/
+input:not(:placeholder-shown) {
+    border-color: var(--theme-color);
+}
+button {
+    margin: 0 .5em 2em;
+    width: calc(40% - .5em);
+    padding: 0;
+    align-self: flex-end;
+    border: none;
+    color: white;
+    line-height: 2em;
+    cursor: pointer;
+    background: var(--theme-color);
+}
+button::before, li::before {
+    content: attr(data-action);
+}
+.log {
+    width: 80%;
+    align-self: flex-end;
+    margin: 0px;
+    text-align: center;
+}
+.log:not(:empty)::before {
+    content: attr(data-before);
+    font-style: italic;
+    color: var(--theme-ligter-color);
+}
+form:invalid button {
+    background: var(--theme-disabled-color);
+    cursor: not-allowed;
+    animation: none;
+}
+form:valid button:hover {
+    box-shadow: 1px 1px white, 3px 3px var(--theme-color);
+}
+form:valid button:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+}
+ul {
+    box-sizing: border-box;
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 2em 1.5em;
+    min-height: 100%;
+}
+li {
+    list-style: none;
+    background: var(--theme-color);
+    padding: 1em;
+    cursor: pointer;
+    color: white;
+    margin-bottom: .1em;
+}
+li:not([data-pushing="0"]):after {
+    content: attr(data-pushing) ' 条正在推送';
+    color: var(--theme-boder-color);
+    font-size: .6em;
+    font-style: italic;
+    margin-left: 1em;
+}
+li:hover {
+    background: var(--theme-ligter-color);
+}
+.tip p {
+    word-break: break-all;
+    margin: 0 0 1em;
+}
+.link:active, .link:link, .link:visited {
+    color: var(--theme-link-color);
+}
+.link::before {
+    content: attr(href);
+}
+.link:hover::after {
+    content: attr(title);
+    color: var(--theme-ligter-color);
+    font-style: italic;
+}
+.qrcode {
+    width: 60%;
+    display: block;
+    margin: auto;
+}
+body[data-state] ul {
+    display: block;
+}
+body[data-state] form {
+    display: none;
+}

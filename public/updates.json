@@ -3,7 +3,7 @@
     "push@mantou": {
       "updates": [
         { "version": "1",
-          "update_link": "https://push.xianqiao.wang/public/push.xpi",
+          "update_link": "https://push.xianqiao.wang/push.zip",
           "applications": {
             "gecko": {
               "strict_min_version": "44"

@@ -35,7 +35,7 @@ button.addEventListener('click', e => {
             endpointUrl: lscache.get('userinfo').endpointUrl,
         })
     }).then(res => {
-        if (res.status !== 200 && res.status !== 304) throw res.statusText;
+        if (!res.ok) throw res.statusText;
         return res.text();
     }).then(text => {
         lscache.set('subed', true);

@@ -42,8 +42,7 @@ app.post('/sub', function (req, res) {
         ak = req.body.userAuth,
         eu = req.body.endpointUrl;
     if (!(un && al && pk && ak && eu)) return res.sendStatus(400);
-    if (!database[un]) return res.sendStatus(404);
-    var user = database[un];
+    var user = database[un] || {};
     data = {
         userPublicKey: pk,
         userAuth: ak,

@@ -12,8 +12,10 @@ navigator.serviceWorker.getRegistration().then(reg => {
         login();
     } else if (reg && lscache.get('userinfo')) {
         button.disabled = false;
+    } else if (reg) {
+        subscribe(reg);
     } else {
-        subscribe();
+        registerSW();
     }
 });
 
@@ -77,26 +79,25 @@ function base64urlEncode(data) {
     ].map(v => strmap[v]).join('')).join('').slice(0, len);
 }
 
-function subscribe() {
-    var data;
+function registerSW() {
     navigator.serviceWorker.register('sw.js', {
         scope: './'
-    }).then(reg => {
-        console.log('sw注册完成', reg);
+    }).then(subscribe);
+}
 
-        reg.pushManager.subscribe({
-            userVisibleOnly: true
-        }).then(subscription => {
-            data = {
-                userPublicKey: base64urlEncode(subscription.getKey('p256dh')),
-                userAuth: base64urlEncode(subscription.getKey('auth')),
-                endpointUrl: subscription.endpoint,
-            };
-            button.disabled = false;
-            lscache.set('userinfo', data);
-        }).catch(e => {
-            loger.textContent = '订阅失败！';
+function subscribe(reg) {
+    reg.pushManager.subscribe({
+        userVisibleOnly: true
+    }).then(subscription => {
+        button.disabled = false;
+        lscache.set('userinfo', {
+            userPublicKey: base64urlEncode(subscription.getKey('p256dh')),
+            userAuth: base64urlEncode(subscription.getKey('auth')),
+            endpointUrl: subscription.endpoint,
         });
+    }).catch(e => {
+        loger.textContent = '订阅失败！';
+        console.log(e);
     });
 }
 
